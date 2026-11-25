@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Camila❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+    background-size:400% 400%;
+    animation:fondo 10s ease infinite;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 0;
+}
+
+@keyframes fondo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.contenedor{
+    width:90%;
+    max-width:800px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    border-radius:30px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 30px rgba(0,0,0,.2);
+    z-index:10;
+}
+
+.foto{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid white;
+    box-shadow:0 0 30px rgba(255,255,255,.5);
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.mensaje{
+    font-size:1.25rem;
+    line-height:1.8;
+    margin-top:15px;
+}
+
+button{
+    margin-top:25px;
+    padding:15px 30px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:#ff4d88;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+.controles-musica{
+    margin-top:25px;
+}
+
+.controles-musica audio{
+    display:block;
+    width:100%;
+    max-width:560px;
+    margin:0 auto;
+}
+
+.estado-musica{
+    margin-top:8px;
+}
+
+#sorpresa{
+    display:none;
+    margin-top:25px;
+    font-size:1.4rem;
+    animation:aparecer 1s ease;
+}
+
+.respuesta{
+    display:none;
+    flex-direction:column;
+    gap:12px;
+    margin-top:25px;
+}
+
+.respuesta.visible{
+    display:flex;
+    animation:aparecer 1s ease;
+}
+
+.respuesta p{
+    font-size:1.1rem;
+    font-weight:bold;
+}
+
+.opciones-respuesta{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.respuesta button{
+    margin-top:0;
+}
+
+#confirmacion{
+    display:none;
+    margin-top:12px;
+    padding:12px;
+    border-radius:15px;
+    background:rgba(255,255,255,.2);
+    font-size:1.15rem;
+}
+
+#gatoRespuesta{
+    display:block;
+    margin-bottom:8px;
+    font-size:4rem;
+}
+
+.aviso-respuesta{
+    display:none;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.corazon{
+    position:absolute;
+    color:#fff;
+    animation:subir linear forwards;
+    pointer-events:none;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <img src="corazon.svg" class="foto" alt="Un corazón rojo">
+
+    <h1>❤️ Camila muchachita hermosa ❤️</h1>
+
+    <div class="mensaje">
+        Desde que te conocí entendí que algunas personas tienen
+        una forma especial de iluminar los días.
+
+        <br><br>
+
+        Me gusta tu sonrisa, cuando te pones nerviosa me facina, pero tambien tu forma de ser,
+        la tranquilidad que transmites y la manera en que haces
+        que cualquier momento sea más bonito.
+
+        <br><br>
+
+        No hice esta página para impresionarte,
+        sino para que supieras que alguien dedicó tiempo
+        a crear algo único pensando en ti.
+    </div>
+
+    <button onclick="mostrarMensaje()">
+        Presiona aquí 💌
+    </button>
+
+    <div class="controles-musica">
+        <audio id="musica" controls loop aria-label="Reproducir Eres un Sueño">
+            <source src="Eres un Sueño.mp3" type="audio/mpeg">
+            Tu navegador no puede reproducir este archivo de audio.
+        </audio>
+        <div id="estadoMusica" class="estado-musica" aria-live="polite"></div>
+    </div>
+
+    <div id="sorpresa">
+        🌹 Camila, me encantaría seguir conociéndote y compartir más momentos contigo. ❤️
+    </div>
+
+    <div class="respuesta">
+        <p>¿Te gustaría seguir conociéndonos?</p>
+        <div class="opciones-respuesta">
+            <button type="button" onclick="guardarRespuesta('Sí')">Sí ❤️</button>
+            <button type="button" onclick="guardarRespuesta('No')">No</button>
+        </div>
+        <div id="confirmacion" aria-live="polite">
+            <span id="gatoRespuesta" aria-hidden="true"></span>
+            <span id="mensajeRespuesta"></span>
+            <div id="avisoRespuesta" class="aviso-respuesta"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+async function mostrarMensaje(){
+    document.getElementById("sorpresa").style.display="block";
+    document.querySelector(".respuesta").classList.add("visible");
+
+    const musica=document.getElementById("musica");
+    const estado=document.getElementById("estadoMusica");
+
+    try{
+        await musica.play();
+        estado.textContent="";
+    }catch(error){
+        estado.textContent="No se pudo iniciar la música. Verifica que el archivo de audio esté junto a esta página.";
+    }
+}
+
+function mostrarRespuesta(respuesta){
+    const confirmacion=document.getElementById("confirmacion");
+    const gato=document.getElementById("gatoRespuesta");
+    const mensaje=document.getElementById("mensajeRespuesta");
+
+    if(respuesta==="Sí"){
+        gato.textContent="😸💌";
+        mensaje.textContent="Lo sabia pero No sabré tu respuesta, solo dame un beso. 💋 ahi sabre que dijiste que si.";
+    }else{
+        gato.textContent="😿";
+        mensaje.textContent="Ok, entiendo pero seguire intentando hasta que me digas que sí. 💋";
+    }
+
+    confirmacion.style.display="block";
+}
+
+let respuestaElegida=null;
+
+function guardarRespuesta(respuesta){
+    if(respuestaElegida!==null){
+        if(respuestaElegida!==respuesta){
+            mostrarRespuesta(respuestaElegida);
+            const aviso=document.getElementById("avisoRespuesta");
+            aviso.textContent="Ya dijiste que " + respuestaElegida.toLowerCase() + ". Recarga la página para poder cambiar tu respuesta.";
+            aviso.style.display="block";
+        }
+
+        return;
+    }
+
+    respuestaElegida=respuesta;
+    mostrarRespuesta(respuesta);
+}
+
+function crearCorazon(){
+
+    let corazon=document.createElement("div");
+
+    corazon.classList.add("corazon");
+    corazon.innerHTML="❤️";
+
+    corazon.style.left=Math.random()*100+"vw";
+    corazon.style.fontSize=(20+Math.random()*30)+"px";
+    corazon.style.animationDuration=(3+Math.random()*5)+"s";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(()=>{
+        corazon.remove();
+    },8000);
+}
+
+setInterval(crearCorazon,250);
+
+</script>
+
+</body>
+</html>
